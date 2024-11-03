@@ -3,14 +3,153 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estimation d'un bien</title>
+    <link rel="stylesheet" href="../static/css/styles.css">
+    <link rel="stylesheet" href="../static/css/estimerbien.css">
 </head>
 <body>
 
-    {% include 'header.html' %}
+    <header>
+        {% include 'header.html' %}
+    </header>
 
-    <div>
-        <h2>Estimation d'un bien</h2>
+    {% if prix_estime is not none %}
+        <div id="estimationResult" class="result">
+            <h3>Estimation du Bien :</h3>
+            <p>Estimation : {{ prix_estime }} €</p>
+        </div>
+    {% endif %}
+
+    <div class="container">
+        <div class="form-container">
+            <h2>Formulaire d'estimation</h2>
+
+            <form method="post" class="form-grid"> 
+
+                <div>
+                    <label for="adresse">Adresse complète :</label>
+                    <input type="text" id="adresse" name="adresse">
+                </div>
+
+                <div>
+                    <label for="ville">Ville :</label>
+                    <select id="ville" name="ville" required>
+                        {% for ville in villes %}
+                            <option value="{{ ville }}">{{ ville }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div>
+                    <label for="type_bien">Type de bien :</label>
+                    <select id="type_bien" name="type_bien">
+                        <option value="maison">Maison</option>
+                        <option value="appartement">Appartement</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label for="annee_construction">Année de construction :</label>
+                    <select id="annee_construction" name="annee_construction">
+                        <option value="avant_1949">Avant 1949</option>
+                        <option value="1949_1974">1949-1974</option>
+                        <option value="1975_1999">1975-1999</option>
+                        <option value="2000_2005">2000-2005</option>
+                        <option value="2006_2012">2006-2012</option>
+                        <option value="2013_2018">2013-2018</option>
+                        <option value="apres_2018">Après 2018</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label for="superficie">Superficie (m²) :</label>
+                    <input type="number" id="superficie" name="superficie">
+                </div>
+
+                <div>
+                    <label for="nombre_pieces">Nombre de pièces :</label>
+                    <input type="number" id="nombre_pieces" name="nombre_pieces">
+                </div>
+
+                <div>
+                    <label for="nombre_etages">Nombre d’étages :</label>
+                    <input type="number" id="nombre_etages" name="nombre_etages">
+                </div>
+
+                <div>
+                    <label for="etat_general">État général :</label>
+                    <select id="etat_general" name="etat_general">
+                        <option value="neuf">Neuf</option>
+                        <option value="bon">Bon</option>
+                        <option value="a_renover">À rénover</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label for="jardin_terrasse">Présence de jardin/terrasse :</label>
+                    <select id="jardin_terrasse" name="jardin_terrasse">
+                        <option value="oui">Oui</option>
+                        <option value="non">Non</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label for="garage_parking">Garage ou place de parking :</label>
+                    <select id="garage_parking" name="garage_parking">
+                        <option value="oui">Oui</option>
+                        <option value="non">Non</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label for="ascenseur">Ascenseur :</label>
+                    <select id="ascenseur" name="ascenseur">
+                        <option value="oui">Oui</option>
+                        <option value="non">Non</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label for="type_chauffage">Type de chauffage :</label>
+                    <select id="type_chauffage" name="type_chauffage">
+                        <option value="gaz">Gaz</option>
+                        <option value="electrique">Électrique</option>
+                        <option value="fioul">Fioul</option>
+                        <option value="bois">Bois</option>
+                        <option value="autre">Autre</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label for="proximite">Proximité des commodités :</label>
+                    <select id="proximite" name="proximite">
+                        <option value="commerces">Commerces</option>
+                        <option value="transports">Transports</option>
+                        <option value="ecoles">Écoles</option>
+                        <option value="parcs">Parcs</option>
+                        <option value="autre">Autre</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label for="renovations">Rénovations récentes :</label>
+                    <select id="renovations" name="renovations">
+                        <option value="oui">Oui</option>
+                        <option value="non">Non</option>
+                    </select>
+                </div>
+
+                <div>
+                    <button type="submit" class="submit-button">Envoyer</button>
+                </div>
+
+            </form>
+        </div>
     </div>
-    {% include 'footer.html' %}
+
+    <footer>
+        {% include 'footer.html' %}
+    </footer>
+
 </body>
 </html>
